@@ -1,0 +1,107 @@
+<!-- 
+  Student ID : M22W7548
+  Name : Sithum Dilanga Dewanaarachchi
+ -->
+
+<!DOCTYPE html>
+<head>
+  <title></title>
+</head>
+<body style="background-color:rgb(224, 241, 243);">
+
+  <center>
+    <h3 class="inputYear" style="color:green;">2004</h3>
+    <h2 class="leapYear" style="color:green;">Leap Year</h2>
+    <h3 class="horarySign" style="color:green;">Monkey</h3>
+    <img class="horaryImg" height="400px" width="auto" src="https://www.wtcpl.org/wp-content/plugins/wp-media-folder/assets/images/default.png">
+  </center>
+  
+
+  <script>
+
+    // selectors
+    let inputYearSelector = document.querySelector(".inputYear");
+    let leapYearSelector = document.querySelector(".leapYear");
+    let horarySignSelector = document.querySelector(".horarySign");
+    let horaryImgSelector = document.querySelector(".horaryImg");
+    
+    // leap year check function
+    function checkLeapYear(year) {
+      
+      // conditions to check whether it is a leap year or not
+      if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
+        console.log(year + ' is a leap year!');
+        return true;
+      } else {
+        console.log(year + ' is not a leap year!');
+        return false;
+      }
+    }
+
+
+    // check horary sign function
+    function checkHorarySign(year) {
+
+      // list of all horary signs
+      const allHorarySigns = ['Monkey', 'Rooster', 'Dog', 'Pig', 'Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Sheep'];
+
+      // list of all horary sign image links
+      const horaryImage = [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Bonnet_macaque_%28Macaca_radiata%29_Photograph_By_Shantanu_Kuveskar.jpg/220px-Bonnet_macaque_%28Macaca_radiata%29_Photograph_By_Shantanu_Kuveskar.jpg",
+        "https://cdn.shopify.com/s/files/1/1407/3744/articles/Pros_and_Cons_of_Roosters_thumbnail.png?v=1633558998",
+        "https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*",
+        "https://www.thesprucepets.com/thmb/sBQYZjACGvfFjqDCldnP7Zfk11s=/3600x0/filters:no_upscale():strip_icc()/front-view-closeup-of-black-and-white-spotted-piglet-on-hay-on-a-sunny-day-881477548-5c8ba7b746e0fb000187a286.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg",
+        "https://a-z-animals.com/media/2022/02/ox.jpg",
+        "https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg",
+        "https://www.humanesociety.org/sites/default/files/2019/03/rabbit-475261_0.jpg",
+        "https://www.milwaukeeindependent.com/wp-content/uploads/2022/09/090222_ThereBeDragons_STK_TStudio.jpg",
+        "https://wildlifesos.org/wp-content/uploads/2022/06/File-photo-Cobra.jpg",
+        "https://www.thesprucepets.com/thmb/WCHi1vABy_vfH6kDo7snIluUzyo=/2109x0/filters:no_upscale():strip_icc()/GettyImages-909948608-5c69cd9446e0fb0001560d1a.jpg",
+        "https://images.squarespace-cdn.com/content/v1/5f87b82c3640400719116914/57b6c537-5a4c-4469-b268-50031d9fe9b2/Fly+strike.png"
+      ];
+
+      // horary sign is based on the Chinese zodiac cycle
+      const startYear = 1924;  // this is the start year of the Chinese zodiac cycle
+      const diff = year - startYear; // get the difference of current year and start year
+      const horaryIndex = diff % 12; // modules 12 will be the index of the allHorarySigns which is the correct horary sign
+
+      // return as a object which includes sign text and image link
+      return {
+        horaryText: allHorarySigns[horaryIndex],
+        horaryImage: horaryImage[horaryIndex]
+      };
+    }
+    
+    // user prompt
+    const userInputYear = prompt("Enter Year: ");
+
+    // NaN means Not a Number check if it is number or not
+    if(isNaN(userInputYear)) { 
+      alert('Please enter a valid year!'); 
+    } 
+
+    // setting user input year
+    inputYearSelector.textContent = userInputYear;
+
+    // calling checkLeapYear function
+    const isLeapYear = checkLeapYear(userInputYear);
+    // calling checkHorarySign function
+    const horarySign = checkHorarySign(userInputYear);
+    
+    if (isLeapYear) { // if true its a Leap Year
+      leapYearSelector.textContent = "Leap Year";
+    } else {
+      leapYearSelector.textContent = "Not a Leap Year";
+    }
+
+    // setting horary sign text
+    horarySignSelector.textContent = horarySign.horaryText;
+    // setting horary sign image
+    horaryImgSelector.src = horarySign.horaryImage;
+    
+
+  </script>
+
+</body>
+</html>
